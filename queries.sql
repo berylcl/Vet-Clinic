@@ -1,5 +1,3 @@
-/*Queries that provide answers to the questions from all projects.*/
-
 -- Query 1: Find all animals whose name ends in "mon"
 SELECT * FROM animals WHERE name LIKE '%mon';
 
@@ -23,6 +21,7 @@ SELECT * FROM animals WHERE name != 'Gabumon';
 
 -- Query 8: Find all animals with a weight between 10.4kg and 17.3kg (including animals with weights equal to precisely 10.4kg or 17.3kg)
 SELECT * FROM animals WHERE weight_kg BETWEEN 10.4 AND 17.3;
+
 -- Begin the transaction
 BEGIN;
 
@@ -43,46 +42,7 @@ UPDATE animals SET weight_kg = weight_kg * -1 WHERE weight_kg < 0;
 
 -- Commit the transaction
 COMMIT;
--- Begin the transaction
-BEGIN;
 
--- Delete all animals born after Jan 1st, 2022
-DELETE FROM animals WHERE date_of_birth > '2022-01-01';
-
--- Create a savepoint for the transaction
-SAVEPOINT my_savepoint;
-
--- Update all animals' weight to be their weight multiplied by -1
-UPDATE animals SET weight_kg = weight_kg * -1;
-
--- Rollback to the savepoint
-ROLLBACK TO my_savepoint;
-
--- Update all animals' weights that are negative to be their weight multiplied by -1
-UPDATE animals SET weight_kg = weight_kg * -1 WHERE weight_kg < 0;
-
--- Commit the transaction
-COMMIT;
--- Begin the transaction
-BEGIN;
-
--- Delete all animals born after Jan 1st, 2022
-DELETE FROM animals WHERE date_of_birth > '2022-01-01';
-
--- Create a savepoint for the transaction
-SAVEPOINT my_savepoint;
-
--- Update all animals' weight to be their weight multiplied by -1
-UPDATE animals SET weight_kg = weight_kg * -1;
-
--- Rollback to the savepoint
-ROLLBACK TO my_savepoint;
-
--- Update all animals' weights that are negative to be their weight multiplied by -1
-UPDATE animals SET weight_kg = weight_kg * -1 WHERE weight_kg < 0;
-
--- Commit the transaction
-COMMIT;
 -- Query 1: How many animals are there?
 SELECT COUNT(*) AS total_animals FROM animals;
 
